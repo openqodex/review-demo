@@ -18,3 +18,9 @@ export function pageCount(items, size) {
   checkSize(size);
   return Math.ceil(items.length / size);
 }
+
+// Yields every page in order, from page 1 to the last page, the last one included.
+export function* pages(items, size) {
+  const count = pageCount(items, size);
+  for (let n = 1; n < count; n++) yield page(items, n, size);
+}
